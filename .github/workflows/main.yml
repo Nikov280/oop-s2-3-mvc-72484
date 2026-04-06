@@ -52,7 +52,9 @@ jobs:
           reportgenerator \
             -reports:TestResults/**/coverage.cobertura.xml \
             -targetdir:coveragereport \
-            -reporttypes:Html
+            -reporttypes:Html \
+            -assemblyfilters:"-Microsoft*;-System*;-*Views*;-*Migrations*" \
+            -classfilters:"-AspNetCore*"
 
       - name: Upload coverage as build artifact
         uses: actions/upload-artifact@v4
