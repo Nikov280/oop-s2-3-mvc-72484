@@ -1,0 +1,85 @@
+﻿@model VGCManagement.DOMAIN.Branch
+
+@{
+    ViewData["Title"] = "Register Branch";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 p-2 rounded-3 me-3">
+                            <i class="bi bi-geo-alt-fill text-success fs-4"></i>
+                        </div>
+                        <h2 class="fw-bold text-dark mb-0">New Branch</h2>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label fw-bold text-muted small text-uppercase">Branch Name</label>
+                            <input asp-for="Name" class="form-control form-control-lg border-2 shadow-none" placeholder="e.g. Downtown Campus" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="Address" class="form-label fw-bold text-muted small text-uppercase">Physical Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-2 border-end-0 text-muted">
+                                    <i class="bi bi-map"></i>
+                                </span>
+                                <textarea asp-for="Address" class="form-control border-2 border-start-0 shadow-none" rows="3" placeholder="Street, Number, City..."></textarea>
+                            </div>
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <hr class="my-4 opacity-25">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                <i class="bi bi-check-circle me-1"></i> Register Branch
+                            </button>
+                            <a asp-action="Index" class="btn btn-link text-secondary">
+                                Return to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f3f6f9;
+    }
+
+    .form-control {
+        border-color: #e9ecef;
+        border-radius: 8px;
+    }
+
+        .form-control:focus {
+            border-color: #0d6efd;
+        }
+
+    .btn-lg {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.8rem;
+    }
+
+    .input-group-text {
+        border-color: #e9ecef;
+        border-radius: 8px;
+    }
+</style>

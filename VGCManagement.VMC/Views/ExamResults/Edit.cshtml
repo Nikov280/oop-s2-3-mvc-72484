@@ -1,0 +1,49 @@
+﻿@model VGCManagement.DOMAIN.ExamResult
+
+@{
+    ViewData["Title"] = "Edit Grade";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white py-3 border-bottom">
+                    <h4 class="mb-0 text-primary"><i class="bi bi-pencil-square"></i> Edit Exam Result</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="StudentProfileId" class="form-label fw-bold">Student (Number - Name)</label>
+                            @* Cambiamos el input por un select para permitir la edición *@
+                            <select asp-for="StudentProfileId" class="form-select" asp-items="ViewBag.StudentProfileId">
+                                <option value="">-- Change Student --</option>
+                            </select>
+                            <span asp-validation-for="StudentProfileId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Exam</label>
+                            <select asp-for="ExamId" class="form-select" asp-items="ViewBag.ExamId"></select>
+                            <span asp-validation-for="ExamId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">                            
+                                <label asp-for="Score" class="form-label fw-bold">Score</label>
+                                <input asp-for="Score" class="form-control" type="number" step="0.1" />
+                                <span asp-validation-for="Score" class="text-danger"></span>                            
+                        </div>
+
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary">Update Grade</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Back to Gradebook</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

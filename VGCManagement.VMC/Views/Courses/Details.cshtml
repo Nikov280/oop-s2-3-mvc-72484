@@ -1,0 +1,35 @@
+﻿@model VGCManagement.DOMAIN.Course
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h2 class="fw-bold text-dark mb-0">Course Information</h2>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <label class="text-muted small text-uppercase fw-bold">Designation</label>
+                            <p class="fs-4 fw-semibold text-primary">@Model.Name</p>
+                        </div>
+                        <div class="col-md-6 border-end">
+                            <label class="text-muted small text-uppercase fw-bold">Academic Period</label>
+                            <p class="mb-1"><strong>Start:</strong> @Model.StartDate.ToLongDateString()</p>
+                            <p><strong>End:</strong> @Model.EndDate.ToLongDateString()</p>
+                        </div>
+                        <div class="col-md-6 px-md-4">
+                            <label class="text-muted small text-uppercase fw-bold">Location</label>
+                            <p class="fs-5">@(Model.Branch?.Name ?? "Main Campus")</p>
+                        </div>
+                    </div>
+                    <hr class="my-4 text-muted opacity-25">
+                    <div class="d-flex gap-2">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4">Edit Records</a>
+                        <a asp-action="Index" class="btn btn-light px-4">Back to Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

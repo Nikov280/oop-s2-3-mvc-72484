@@ -1,0 +1,36 @@
+﻿@model VGCManagement.DOMAIN.ExamResult
+
+@{
+    ViewData["Title"] = "Delete Result";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow-sm border-2">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-octagon-fill text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h3 class="text-danger mb-3">Delete Result?</h3>
+                    <p class="text-muted mb-4">
+                        You are about to remove the grade for <strong>@Model.Student?.FullName</strong> in the exam <strong>@Model.Exam?.Title</strong>. This action cannot be undone.
+                    </p>
+
+                    <div class="alert alert-light border mb-4 py-3">
+                        <div class="small text-muted">Final Score to Delete:</div>
+                        <div class="h4 mb-0 fw-bold">@Model.Score</div>
+                    </div>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">Yes, Delete Permanently</button>
+                            <a asp-action="Index" class="btn btn-light">Cancel and Go Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

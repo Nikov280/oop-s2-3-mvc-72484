@@ -1,0 +1,49 @@
+﻿@model VGCManagement.DOMAIN.ExamResult
+
+@{
+    ViewData["Title"] = "Grade Details";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm border-0 overflow-hidden">
+                <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Result Details</h4>
+                    <span class="badge @(Model.Score >= 40 ? "bg-success" : "bg-danger") p-2">
+                        @(Model.Score >= 40 ? "PASSED" : "FAILED")
+                    </span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4 text-center">                        
+                        <div class="text-muted small text-uppercase">Score</div>
+                        <div class="display-6 fw-bold text-primary">@Model.Score</div>                                               
+                    </div>
+
+                    <div class="list-group list-group-flush border-top border-bottom mb-4">
+                        <div class="list-group-item d-flex justify-content-between py-3">
+                            <span class="text-muted">Student Name:</span>
+                            <span class="fw-bold">@Model.Student?.FullName</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between py-3">
+                            <span class="text-muted">Student ID:</span>
+                            <span>@Model.Student?.StudentNumber</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between py-3">
+                            <span class="text-muted">Exam:</span>
+                            <span class="text-primary fw-bold">@Model.Exam?.Title</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        @if (!User.IsInRole("Student"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4">Edit Grade</a>
+                        }
+                        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

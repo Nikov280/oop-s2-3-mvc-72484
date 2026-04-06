@@ -1,0 +1,38 @@
+﻿@model VGCManagement.DOMAIN.CourseEnrolment
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h2 class="fw-bold text-dark mb-0">New Enrollment</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+                        <div class="mb-4">
+                            <label asp-for="StudentProfileId" class="form-label fw-bold text-muted small text-uppercase">Select Student</label>
+                            <select asp-for="StudentProfileId" class="form-select form-select-lg border-2 shadow-none" asp-items="ViewBag.StudentProfileId">
+                                <option value="">-- Choose Student --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="CourseId" class="form-label fw-bold text-muted small text-uppercase">Select Course</label>
+                            <select asp-for="CourseId" class="form-select form-select-lg border-2 shadow-none" asp-items="ViewBag.CourseId">
+                                <option value="">-- Choose Course --</option>
+                            </select>
+                        </div>
+
+                        <hr class="my-4 opacity-25">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">Confirm Enrollment</button>
+                            <a asp-action="Index" class="btn btn-link text-secondary text-decoration-none">Cancel and return</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

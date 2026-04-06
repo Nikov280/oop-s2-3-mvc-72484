@@ -1,0 +1,36 @@
+﻿@model VGCManagement.DOMAIN.Exam
+
+@{
+    ViewData["Title"] = "Delete Exam";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow-sm border-2">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-trash3-fill text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h3 class="text-danger mb-3">Delete this Exam?</h3>
+                    <p class="text-muted mb-4">
+                        Warning: Deleting the exam <strong>"@Model.Title"</strong> will also delete all student grades associated with it. This cannot be undone.
+                    </p>
+
+                    <div class="alert alert-warning border-warning mb-4">
+                        <div class="fw-bold">@Model.Course?.Name</div>
+                        <div class="small">Scheduled for: @Model.Date.ToShortDateString()</div>
+                    </div>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">Confirm Permanent Deletion</button>
+                            <a asp-action="Index" class="btn btn-light">No, Go Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model VGCManagement.DOMAIN.StudentProfile
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h2 class="fw-bold text-dark mb-0">Register Student</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-bold text-muted small text-uppercase">Full Name</label>
+                            <input asp-for="FullName" class="form-control form-control-lg border-2 shadow-none" placeholder="Enter first and last name" />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="StudentNumber" class="form-label fw-bold text-muted small text-uppercase">Student ID #</label>
+                                <input asp-for="StudentNumber" class="form-control border-2 shadow-none" placeholder="VGC-0000" />
+                                <span asp-validation-for="StudentNumber" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label fw-bold text-muted small text-uppercase">Institutional Email</label>
+                                <input asp-for="Email" type="email" class="form-control border-2 shadow-none" placeholder="user@vgc.com" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4 opacity-25">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">Save Profile</button>
+                            <a asp-action="Index" class="btn btn-link text-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

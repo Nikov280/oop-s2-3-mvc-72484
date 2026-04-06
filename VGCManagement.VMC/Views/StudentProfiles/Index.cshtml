@@ -1,0 +1,73 @@
+﻿@model IEnumerable<VGCManagement.DOMAIN.StudentProfile>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h1 class="fw-bold mb-0">Student Registry</h1>
+            <p class="text-muted">Manage student records and personal information</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm px-4">
+            <i class="bi bi-person-plus-fill"></i> Add New Student
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4 py-3 text-muted">Student Info</th>
+                        <th class="py-3 text-muted">Identification</th>
+                        <th class="py-3 text-muted">Email Address</th>
+                        <th class="pe-4 py-3 text-end text-muted">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 py-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-2 me-3 d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-person fs-4"></i>
+                                    </div>
+                                    <div>
+                                        <span class="d-block fw-bold fs-5 text-dark">@item.FullName</span>
+                                        <span class="text-muted small">Active Member</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark border px-3 py-2 fw-semibold">
+                                    #@item.StudentNumber
+                                </span>
+                            </td>
+                            <td>
+                                <a href="mailto:@item.Email" class="text-decoration-none text-primary">
+                                    <i class="bi bi-envelope me-1"></i> @item.Email
+                                </a>
+                            </td>
+                            <td class="pe-4 text-end">
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm px-3">
+                                        <i class="bi bi-pencil"></i> Edit
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm px-3">
+                                        <i class="bi bi-eye"></i> Details
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm px-3">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

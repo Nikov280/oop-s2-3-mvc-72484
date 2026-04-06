@@ -1,0 +1,74 @@
+﻿@model VGCManagement.DOMAIN.ExamResult
+
+@{
+    ViewData["Title"] = "Record Exam Result";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">            
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4 text-center">
+                    <div class="bg-primary bg-opacity-10 d-inline-block p-3 rounded-circle mb-2">
+                        <i class="bi bi-file-earmark-check text-primary fs-3"></i>
+                    </div>
+                    <h2 class="fw-bold text-dark mb-0">Record Exam Result</h2>
+                    <p class="text-muted small text-uppercase fw-bold mt-2">Academic Grading</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="ExamId" class="form-label fw-bold text-muted small text-uppercase">Select Assessment</label>
+                            <select asp-for="ExamId" class="form-select form-select-lg border-2 shadow-none" asp-items="ViewBag.ExamId">
+                                <option value="">-- Select an Exam --</option>
+                            </select>
+                            <span asp-validation-for="ExamId" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="StudentProfileId" class="form-label fw-bold text-muted small text-uppercase">Student (ID - Name)</label>
+                            <select asp-for="StudentProfileId" class="form-select form-select-lg border-2 shadow-none" asp-items="ViewBag.StudentProfileId">
+                                <option value="">-- Select Student --</option>
+                            </select>
+                            <span asp-validation-for="StudentProfileId" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="Score" class="form-label fw-bold text-muted small text-uppercase">Achieved Score</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-2 border-end-0 text-muted">
+                                    <i class="bi bi-percent"></i>
+                                </span>
+                                <input asp-for="Score" class="form-control form-control-lg border-2 border-start-0 shadow-none" type="number" step="0.1" placeholder="e.g. 85.5" />
+                            </div>
+                            <span asp-validation-for="Score" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <hr class="my-4 opacity-25">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm fw-bold">
+                                <i class="bi bi-save me-1"></i> Save Result
+                            </button>
+                            <a asp-action="Index" class="btn btn-link text-secondary text-decoration-none">
+                                Cancel and return
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

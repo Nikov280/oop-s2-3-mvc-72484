@@ -1,0 +1,31 @@
+﻿@model VGCManagement.DOMAIN.FacultyProfile
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden text-center">
+                <div class="py-5" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <div class="bg-white bg-opacity-20 d-inline-block p-4 rounded-circle mb-3 shadow-sm">
+                        <i class="bi bi-person-vcard fs-1"></i>
+                    </div>
+                    <h2 class="fw-bold">@Model.Name</h2>
+                    <p class="mb-0 opacity-75 text-uppercase letter-spacing-1">Faculty ID: @Model.EmployeeNumber</p>
+                </div>
+                <div class="card-body p-5">
+                    <div class="row g-4">
+                        <div class="col-md-12">
+                            <div class="p-4 bg-light rounded-3">
+                                <label class="text-muted small text-uppercase fw-bold d-block mb-1">Institutional Contact</label>
+                                <span class="fs-4 text-dark fw-semibold">@Model.Email</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 d-flex justify-content-center gap-3">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-lg px-5">Edit Record</a>
+                        <a asp-action="Index" class="btn btn-light btn-lg px-5">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

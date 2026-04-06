@@ -1,0 +1,78 @@
+﻿@model VGCManagement.DOMAIN.Exam
+
+@{
+    ViewData["Title"] = "Create New Exam";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">            
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white border-0 pt-4 px-4 text-center">
+                    <div class="bg-primary bg-opacity-10 d-inline-block p-3 rounded-circle mb-2">
+                        <i class="bi bi-journal-text text-primary fs-3"></i>
+                    </div>
+                    <h2 class="fw-bold text-dark mb-0">Create New Exam</h2>
+                    <p class="text-muted small text-uppercase fw-bold mt-2">Assessment Configuration</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+                                                
+                        <div class="mb-4">
+                            <label asp-for="CourseId" class="form-label fw-bold text-muted small text-uppercase">Associated Course</label>
+                            <select asp-for="CourseId" class="form-select form-select-lg border-2 shadow-none" asp-items="ViewBag.CourseId">
+                                <option value="">-- Select a Course --</option>
+                            </select>
+                            <span asp-validation-for="CourseId" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Title" class="form-label fw-bold text-muted small text-uppercase">Exam Title</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-2 border-end-0 text-muted">
+                                    <i class="bi bi-pencil"></i>
+                                </span>
+                                <input asp-for="Title" class="form-control form-control-lg border-2 border-start-0 shadow-none" placeholder="e.g. CA1 - DevOps Foundations" />
+                            </div>
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Date" class="form-label fw-bold text-muted small text-uppercase">Exam Date</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-2 border-end-0 text-muted">
+                                    <i class="bi bi-calendar-event"></i>
+                                </span>
+                                <input asp-for="Date" type="date" class="form-control form-control-lg border-2 border-start-0 shadow-none" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                            </div>
+                            <span asp-validation-for="Date" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="form-check form-switch mb-4 p-3 bg-light rounded-3 ms-0 d-flex justify-content-between align-items-center">
+                            <label class="form-check-label fw-bold text-dark ms-2" for="resultsReleasedSwitch">Publish Results Instantly?</label>
+                            <input class="form-check-input ms-0" type="checkbox" asp-for="ResultsReleased" id="resultsReleasedSwitch" style="width: 3em; height: 1.5em;">
+                        </div>
+                        
+                        <hr class="my-4 opacity-25">
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm fw-bold">
+                                <i class="bi bi-plus-circle me-1"></i> Create Exam
+                            </button>
+                            <a asp-action="Index" class="btn btn-link text-secondary text-decoration-none">
+                                Cancel and return
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
