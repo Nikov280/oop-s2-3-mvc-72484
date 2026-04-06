@@ -71,8 +71,13 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: github-pages      
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Print Coverage Link
+        run: |
+          echo "Your Coverage Report is live at: ${{ steps.deployment.outputs.page_url }}"
