@@ -88,7 +88,7 @@ namespace VGCManagement.VMC.Data
                     );
                 }
 
-                // 5. Seed de Exams
+                
                 if (!context.Exams.Any())
                 {                    
 

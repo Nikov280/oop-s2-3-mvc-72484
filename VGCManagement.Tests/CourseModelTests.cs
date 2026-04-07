@@ -84,5 +84,105 @@ namespace VGCManagement.Tests
                         
             Assert.False(isValid);
         }
+
+        [Fact]
+        public void AttendanceRecord_Validation_ShouldFail_WhenWeekNumberIsOutOfRange()
+        {
+            
+            var attendance = new AttendanceRecord
+            {
+                CourseEnrolmentId = 1,
+                WeekNumber = 60, 
+                Present = true
+            };
+
+            
+            var context = new ValidationContext(attendance);
+            var results = new List<ValidationResult>();
+            var isValid = Validator.TryValidateObject(attendance, context, results, true);
+
+            
+            Assert.False(isValid);
+            Assert.Contains(results, r => r.MemberNames.Contains("WeekNumber"));
+        }
+
+        [Fact]
+        public void StudentProfile_Validation_ShouldFail_WhenEmailIsInvalid()
+        {
+            
+            var student = new StudentProfile
+            {
+                FullName = "Agustin Test",
+                StudentNumber = "VGC-1234",
+                Email = "this-is-no-email" 
+            };
+
+            
+            var context = new ValidationContext(student);
+            var results = new List<ValidationResult>();
+            var isValid = Validator.TryValidateObject(student, context, results, true);
+
+            
+            Assert.False(isValid);
+            Assert.Contains(results, r => r.MemberNames.Contains("Email"));
+        }
+
+        [Fact]
+        public void ExamResult_Validation_ShouldPass_WhenDataIsValid()
+        {
+            
+            var examResult = new ExamResult
+            {
+                ExamId = 1,
+                StudentProfileId = 1,
+                Score = 85,
+                Grade = "A"
+            };
+
+            
+            var context = new ValidationContext(examResult);
+            var results = new List<ValidationResult>();
+            var isValid = Validator.TryValidateObject(examResult, context, results, true);
+
+            
+            Assert.True(isValid);
+            Assert.Empty(results);
+        }
+
+        [Fact]
+        public void CourseEnrolment_Validation_ShouldFail_WhenRequiredNavigationPropertiesAreMissing()
+        {
+            
+            var enrolment = new CourseEnrolment
+            {                
+                EnrolDate = DateTime.Now
+            };
+            
+            var context = new ValidationContext(enrolment);
+            var results = new List<ValidationResult>();
+            var isValid = Validator.TryValidateObject(enrolment, context, results, true);
+                        
+            Assert.False(isValid);
+        }
+
+        [Fact]
+        public void Course_Validation_ShouldPass_WhenDataIsValid()
+        {
+            
+            var course = new Course
+            {
+                Name = "Web Development",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(3)
+            };
+
+            
+            var context = new ValidationContext(course);
+            var results = new List<ValidationResult>();
+            var isValid = Validator.TryValidateObject(course, context, results, true);
+
+            
+            Assert.True(isValid);
+        }
     }
 }

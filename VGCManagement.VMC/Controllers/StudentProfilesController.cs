@@ -22,6 +22,7 @@ namespace VGCManagement.VMC.Controllers
         }
 
         // GET: StudentProfiles
+        [Authorize(Roles = "Admin, Faculty")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.StudentProfiles.ToListAsync());
@@ -64,7 +65,13 @@ namespace VGCManagement.VMC.Controllers
             ModelState.Remove("IdentityUser");
 
             if (ModelState.IsValid)
-            {
+            {                
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == studentProfile.Email);
+                if (user != null)
+                {
+                    studentProfile.IdentityUserId = user.Id;
+                }
+
                 _context.Add(studentProfile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

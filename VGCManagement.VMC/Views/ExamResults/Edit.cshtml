@@ -17,8 +17,7 @@
                         <input type="hidden" asp-for="Id" />
 
                         <div class="mb-3">
-                            <label asp-for="StudentProfileId" class="form-label fw-bold">Student (Number - Name)</label>
-                            @* Cambiamos el input por un select para permitir la edición *@
+                            <label asp-for="StudentProfileId" class="form-label fw-bold">Student (Number - Name)</label>                            
                             <select asp-for="StudentProfileId" class="form-select" asp-items="ViewBag.StudentProfileId">
                                 <option value="">-- Change Student --</option>
                             </select>

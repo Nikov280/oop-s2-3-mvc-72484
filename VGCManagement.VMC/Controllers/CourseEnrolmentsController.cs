@@ -58,9 +58,7 @@ namespace VGCManagement.VMC.Controllers
             return View();
         }
 
-        // POST: CourseEnrolments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: CourseEnrolments/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StudentProfileId,CourseId,EnrolDate,Status")] CourseEnrolment courseEnrolment)
@@ -98,9 +96,7 @@ namespace VGCManagement.VMC.Controllers
             return View(courseEnrolment);
         }
 
-        // POST: CourseEnrolments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: CourseEnrolments/Edit/5        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,StudentProfileId,CourseId,EnrolDate,Status")] CourseEnrolment courseEnrolment)

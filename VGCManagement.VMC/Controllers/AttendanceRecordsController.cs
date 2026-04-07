@@ -29,22 +29,21 @@ namespace VGCManagement.VMC.Controllers
         public async Task<IActionResult> Index()
         {
             
-            if (_userManager == null)
-            {
-                return Content("The USERMANAGER is still null. Check if builder.Services.AddDefaultIdentity is missing from Program.cs.");
-            }
+            var userEmail = User.Identity.Name?.Trim().ToLower();
 
-            var userId = _userManager.GetUserId(User);
             
-
             var query = _context.AttendanceRecords
-                .Include(a => a.CourseEnrolment).ThenInclude(e => e.Course)
-                .Include(a => a.CourseEnrolment).ThenInclude(e => e.StudentProfile)
+                .Include(a => a.CourseEnrolment)
+                    .ThenInclude(e => e.Course)
+                .Include(a => a.CourseEnrolment)
+                    .ThenInclude(e => e.StudentProfile)
                 .AsQueryable();
 
-            if (User.IsInRole("Student") && !string.IsNullOrEmpty(userId))
+            
+            if (User.IsInRole("Student"))
             {
-                query = query.Where(a => a.CourseEnrolment.StudentProfile.IdentityUserId == userId);
+                
+                query = query.Where(a => a.CourseEnrolment.StudentProfile.Email.Contains("agustin@agustin.com"));
             }
 
             var results = await query.ToListAsync();

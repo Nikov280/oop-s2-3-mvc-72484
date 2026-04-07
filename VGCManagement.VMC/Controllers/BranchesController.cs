@@ -83,9 +83,7 @@ namespace VGCManagement.VMC.Controllers
             return View(branch);
         }
 
-        // POST: Branches/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Branches/Edit/5        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address")] Branch branch)

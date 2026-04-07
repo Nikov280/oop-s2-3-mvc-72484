@@ -52,9 +52,7 @@ namespace VGCManagement.VMC.Controllers
             return View();
         }
 
-        // POST: Assignments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Assignments/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CourseId,Title,MaxScore,DueDate")] Assignment assignment)
@@ -86,9 +84,7 @@ namespace VGCManagement.VMC.Controllers
             return View(assignment);
         }
 
-        // POST: Assignments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Assignments/Edit/5        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CourseId,Title,MaxScore,DueDate")] Assignment assignment)

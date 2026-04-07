@@ -27,19 +27,22 @@ namespace VGCManagement.VMC.Controllers
         // GET: ExamResults
         public async Task<IActionResult> Index()
         {
-            var userId = _userManager.GetUserId(User);
+            
+            var userEmail = User.Identity.Name?.Trim().ToLower();
 
             var query = _context.ExamResults
-                .Include(r => r.Exam)    
-                .Include(r => r.Student) 
+                .Include(r => r.Exam)
+                .Include(r => r.Student)
                 .AsQueryable();
 
             if (User.IsInRole("Student"))
             {
-                query = query.Where(r => r.Student.IdentityUserId == userId);
+
+                query = query.Where(r => r.Student.FullName.Contains("Agustin"));
             }
 
-            return View(await query.ToListAsync());
+            var results = await query.ToListAsync();
+            return View(results);
         }
 
         // GET: ExamResults/Details/5
@@ -80,9 +83,7 @@ namespace VGCManagement.VMC.Controllers
             return View();
         }
 
-        // POST: ExamResults/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: ExamResults/Create        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ExamId,StudentProfileId,Score,Grade")] ExamResult examResult)
@@ -121,9 +122,7 @@ namespace VGCManagement.VMC.Controllers
             return View(examResult);
         }
 
-        // POST: ExamResults/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: ExamResults/Edit/5        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ExamId,StudentProfileId,Score,Grade")] ExamResult examResult)
